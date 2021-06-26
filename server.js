@@ -2,6 +2,7 @@
  * @description bring in packages
  */
 const express = require('express')
+const cors = require('cors')
 const {connect} =require('mongoose')
 
 /**
@@ -16,6 +17,7 @@ const app =express()
  * @description add required app middlewares
 */
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded({extended:true}))
 
 
@@ -28,7 +30,7 @@ function ConnectDb() {
     {
         useUnifiedTopology:true,
         useCreateIndex:true,
-        useFindAndModify:true,
+        useFindAndModify:false,
         useNewUrlParser:true
     })
     .then(() => {
@@ -41,6 +43,14 @@ function ConnectDb() {
     });
 }
 ConnectDb()
+
+
+//routes middleware 
+
+app.use('/api/v1/admin',require('./routes/admin.routes'))
+app.use('/api/v1/user',require('./routes/user.routes'))
+app.use('/api/v1/package',require('./routes/packages.routes'))
+
 
 /**
  * @description start server with app.listen
