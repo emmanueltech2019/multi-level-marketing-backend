@@ -33,8 +33,8 @@ exports.register = (req, res) => {
   } = req.body;
   User.findOne({ email }, (err, user) => {
     if (err) {
-      res.status(400).json({
-        message: "an error occured",
+      res.status(403).json({
+        message: "email already exist",
         error: err,
       });
     }
@@ -44,7 +44,19 @@ exports.register = (req, res) => {
       });
     }
     if (!user) {
-      const hash = bcrypt.hashSync(password, 10);
+      User.findOne({username},(err,user)=>{
+        if(err){
+          return res.status(400).json({
+            message:'username already exist'
+          })
+        }
+        if(user){
+          return res.status(400).json({
+            message:'username already exist'
+          })
+        }
+        if(!user){
+          const hash = bcrypt.hashSync(password, 10);
       if(sponsors_username){
         User.findOne({username:sponsors_username},(err,user)=>{
           if(user){
@@ -116,6 +128,10 @@ exports.register = (req, res) => {
             res.status(400).json(err);
           });
       }
+        }
+      })
+      
+      
     }
   });
 };
@@ -230,7 +246,7 @@ exports.makePayment = (req, res) => {
       })
       .catch((err) => {
         res.status(400).json({
-          message: "an error occured",
+          message: "please attach proof of payment, e.g : image or PDF",
           status: false,
         });
       });

@@ -12,8 +12,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   folder: "posts",
-  allowedFormats: ["jpg", "png"],
-  transformation: [{ width: 500, height: 500, crop: "limit" }],
+  allowedFormats: ["jpg", "png","pdf"],
 });
 
 const parser = multer({ storage: storage }).single("image");

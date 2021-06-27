@@ -534,6 +534,7 @@ exports.changeLevel = (req, res) => {
 
 exports.users = (req, res) => {
   User.find({})
+  .sort({createdAt:-1})
     .then((users) => {
       res.status(200).json({
         users,
