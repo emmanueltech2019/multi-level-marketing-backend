@@ -168,7 +168,7 @@ exports.approveUser = (req, res) => {
             switch (user.downlines.length) {
               case 2:
                 user.fooditems.push({
-                  total: 5000,
+                  total: 4000,
                   name: "level 1 food items",
                   status: "false",
                   id: uuidv4(),
