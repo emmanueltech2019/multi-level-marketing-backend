@@ -381,9 +381,9 @@ exports.claimFooditems = (req, res) => {
 exports.changeLevel = (req, res) => {
   User.findOne({ _id: req.user.data.id })
     .then((user) => {
-      if (user.level == 0 && req.body.leveldownlines == 2) {
+      if (user.level == 0 && req.body.leveldownlines == 6) {
         user.fooditems.push({
-          total: 5000,
+          total: 4000,
           name: "level 1 food items",
           status: "false",
           id: uuidv4(),
@@ -401,7 +401,7 @@ exports.changeLevel = (req, res) => {
           });
         });
       }
-      if (user.level == 1 && req.body.leveldownlines == 4) {
+      if (user.level == 1 && req.body.leveldownlines == 24) {
         user.payouts.push({
           name: "level 2 cash earning",
           amount: 5000,
@@ -428,7 +428,7 @@ exports.changeLevel = (req, res) => {
           });
         });
       }
-      if (user.level == 2 && req.body.leveldownlines == 8) {
+      if (user.level == 2 && req.body.leveldownlines == 224) {
         user.fooditems.push({
           total: 20000,
           name: "level 3 food items",
@@ -459,7 +459,7 @@ exports.changeLevel = (req, res) => {
           });
         });
       }
-      if (user.level == 3 && req.body.leveldownlines == 16) {
+      if (user.level == 3 && req.body.leveldownlines == 1792) {
         user.fooditems.push({
           total: 40000,
           name: "level 4 food items",
@@ -487,7 +487,7 @@ exports.changeLevel = (req, res) => {
           });
         });
       }
-      if (user.level == 4 && req.body.leveldownlines == 32) {
+      if (user.level == 4 && req.body.leveldownlines == 14336) {
         user.fooditems.push({
           total: 100000,
           name: "level 5 food items",
