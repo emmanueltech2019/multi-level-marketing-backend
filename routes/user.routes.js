@@ -6,6 +6,7 @@ const { register, userProfile,userProfile2,makePayment,updateContactDets,updateB
 
 router.post('/register',register)
 router.post('/login',login)
+
 router.get('/profile/:id',userProfile)
 router.get('/profile/:username/second',userProfile1)
 router.get('/downlines/:username',userDownlines)

@@ -1,13 +1,13 @@
 const router = require('express').Router()
 const { requireSignin, adminMiddleware } = require('../common-middlewares')
-const { register, login, adminProfile2, pendingUsers, approveUser, declineUser, getdeclinedUsers, users, pendingusers, pendingpayouts, payUser, declinePayUser, pendingpayoutsfood, payUserFood } = require('../controllers/admin')
+const { register, login, adminProfile2, deleteUser, pendingUsers, approveUser, declineUser, getdeclinedUsers, users, pendingusers, pendingpayouts, payUser, declinePayUser, pendingpayoutsfood, payUserFood } = require('../controllers/admin')
 
 
 
 router.post('/register',register)
 router.post('/login',login)
 router.get('/profile/logged/in',requireSignin,adminProfile2)
-
+router.delete('/delete/user/:id',requireSignin,adminMiddleware,deleteUser)
 
 router.get('/declined/users',requireSignin,adminMiddleware,getdeclinedUsers)
 router.get('/pending/users',requireSignin,adminMiddleware,pendingUsers)

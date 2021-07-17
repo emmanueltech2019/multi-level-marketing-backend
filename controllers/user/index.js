@@ -164,7 +164,8 @@ exports.login = (req, res) => {
           user: {
             _id: user._id,
             role: user.role,
-            email:user.email
+            email:user.email,
+            paymentProof:user.paymentProof?user.paymentProof:null
           },
         });
       } else {

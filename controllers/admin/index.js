@@ -690,3 +690,17 @@ exports.paidUsersFood = (req, res) => {
       });
     });
 };
+
+
+exports.deleteUser=(req,res)=>{
+  User.findOneAndDelete({_id:req.params.id})
+  .then(() => {
+    res.status(200).json({
+      message:'successfully deleted'
+    }) 
+  }).catch(() => {
+    res.status(400).json({
+      message:'unknown error occured'
+    }) 
+  });
+}
