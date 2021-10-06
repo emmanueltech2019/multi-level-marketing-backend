@@ -44,8 +44,10 @@ function ConnectDb() {
 }
 ConnectDb()
 
-
+ 
 //routes middleware 
+
+
 
 app.use('/api/v1/admin',require('./routes/admin.routes'))
 app.use('/api/v1/user',require('./routes/user.routes'))

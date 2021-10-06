@@ -126,7 +126,7 @@ exports.pendingUsers = (req, res) => {
       });
     });
 };
-exports.getdeclinedUsers = (req, res) => {
+  exports.getdeclinedUsers = (req, res) => {
   User.find({ approved: false, approvedState: "declined" })
     .then((result) => {
       res.status(200).json({
@@ -166,7 +166,7 @@ exports.approveUser = (req, res) => {
               date: new Date(),
             });
             switch (user.downlines.length) {
-              case 2:
+              case 6:
                 user.fooditems.push({
                   total: 4000,
                   name: "level 1 food items",
@@ -180,7 +180,7 @@ exports.approveUser = (req, res) => {
                   ],
                 });
                 break;
-              case 4:
+              case 30:
                 user.pv = user.pv + 5000;
                 user.payouts.push({
                   name: "level 2 cash earning",
@@ -202,7 +202,7 @@ exports.approveUser = (req, res) => {
                   ],
                 });
                 break;
-              case 8:
+              case 254:
                 user.pv = user.pv + 20000;
                 user.fooditems.push({
                   total: 20000,
@@ -228,7 +228,7 @@ exports.approveUser = (req, res) => {
                   id: uuidv4(),
                 });
                 break;
-              case 16:
+              case 2046:
                 user.pv = user.pv + 100000;
                 user.fooditems.push({
                   total: 40000,
@@ -251,7 +251,7 @@ exports.approveUser = (req, res) => {
                   id: uuidv4(),
                 });
                 break;
-              case 32:
+              case 16382:
                 user.pv = user.pv + 150000;
                 user.fooditems.push({
                   total: 100000,
@@ -274,6 +274,25 @@ exports.approveUser = (req, res) => {
                 user.payouts.push({
                   name: "level 5 cash earning",
                   amount: 150000,
+                  status: "false",
+                  id: uuidv4(),
+                });
+                break;
+                case 64534:
+                user.pv = user.pv + 2000000;
+                user.fooditems.push({
+                  total: 500000,
+                  name: "level 6 food items",
+                  status: "false",
+                  id: uuidv4(),
+                  items: [
+                    "Food items worth 500,000",
+                    
+                  ],
+                });
+                user.payouts.push({
+                  name: "level 6 cash earning",
+                  amount: 2000000,
                   status: "false",
                   id: uuidv4(),
                 });
@@ -401,7 +420,7 @@ exports.changeLevel = (req, res) => {
           });
         });
       }
-      if (user.level == 1 && req.body.leveldownlines == 24) {
+      if (user.level == 1 && req.body.leveldownlines == 30) {
         user.payouts.push({
           name: "level 2 cash earning",
           amount: 5000,
@@ -428,7 +447,7 @@ exports.changeLevel = (req, res) => {
           });
         });
       }
-      if (user.level == 2 && req.body.leveldownlines == 224) {
+      if (user.level == 2 && req.body.leveldownlines == 254) {
         user.fooditems.push({
           total: 20000,
           name: "level 3 food items",
@@ -459,7 +478,7 @@ exports.changeLevel = (req, res) => {
           });
         });
       }
-      if (user.level == 3 && req.body.leveldownlines == 1792) {
+      if (user.level == 3 && req.body.leveldownlines == 2046) {
         user.fooditems.push({
           total: 40000,
           name: "level 4 food items",
@@ -487,7 +506,7 @@ exports.changeLevel = (req, res) => {
           });
         });
       }
-      if (user.level == 4 && req.body.leveldownlines == 14336) {
+      if (user.level == 4 && req.body.leveldownlines == 16382) {
         user.fooditems.push({
           total: 100000,
           name: "level 5 food items",
@@ -518,7 +537,31 @@ exports.changeLevel = (req, res) => {
             status: true,
           });
         });
-      } else {
+      } 
+      if (user.level == 5 && req.body.leveldownlines == 64534) {
+        user.fooditems.push({
+          total: 500000,
+          name: "level 6 food items",
+          status: "false",
+          id: uuidv4(),
+          items: [
+            "food items worth 500,000",
+          
+          ],
+        });
+        user.payouts.push({
+          name: "level 6 cash earning",
+          amount: 2000000,
+          status: "false",
+          id: uuidv4(),
+        });
+        user.level = 6;
+        user.save().then(() => {
+          return res.status(200).json({
+            status: true,
+          });
+        });
+      }else {
         return res.status(200).json({
           status: true,
         });

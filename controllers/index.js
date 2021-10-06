@@ -9,19 +9,3 @@ exports.createContentOne=(req,res)=>{
         console.log(err)
     });
 }
-// exports.createContentOne=(req,res)=>{
-//     Terms.find({})
-//     .then((terms) => {
-//         res.send(terms)
-//     }).catch((err) => {
-//         console.log(err)
-//     });
-// }
-// exports.createContentOne=(req,res)=>{
-//     Terms.find({})
-//     .then((terms) => {
-//         res.send(terms)
-//     }).catch((err) => {
-//         console.log(err)
-//     });
-// }

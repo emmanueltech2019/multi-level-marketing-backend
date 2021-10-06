@@ -60,7 +60,11 @@ exports.register = (req, res) => {
       if(sponsors_username){
         User.findOne({username:sponsors_username},(err,user)=>{
           if(user){
-            
+            if (err) {
+              res.status(400).json({
+                message: "an error occured",
+              });
+            }
             const newUser = new User({
               email,
               phone_number,
